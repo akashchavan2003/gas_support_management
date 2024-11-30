@@ -1,16 +1,19 @@
-Gas Utility Customer Service System
-Project Overview
+#Gas Utility Customer Service System
+
+
+#Project Overview
 This Django application provides a comprehensive customer service platform for a gas utility company, allowing customers to submit and track service requests, and enabling customer support representatives to manage these requests.
-Key Features
+
+#Key Features
 
 Submit service requests online
 Track service request status
 View customer account information
 Support representatives can manage and update requests
 
-Endpoints
-Customer Endpoints
+#Endpoints
 
+#Customer Endpoints
 Submit Service Request
 
 POST /customer/requests/
