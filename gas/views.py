@@ -20,6 +20,13 @@ class CustomerServiceRequestViewSet(viewsets.ViewSet):
     
     def create(self, request):
         """Endpoint for customers to submit new service requests"""
+        request_type_id = request.data.get('request_type')
+        if not ServiceRequestType.objects.filter(id=request_type_id).exists():
+            return Response(
+                {"error": f"Invalid service request type with ID {request_type_id}."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
         serializer = CustomerServiceRequestSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
