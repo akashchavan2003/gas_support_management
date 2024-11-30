@@ -1,0 +1,64 @@
+Gas Utility Application Testing Guide
+Prerequisites
+
+Ensure Django and Django Rest Framework are installed
+Have the project set up with migrations applied
+Install requests library for testing script
+
+Testing Methods
+1. Manual Testing with Postman/curl
+Customer Endpoints
+
+Submit Service Request
+bashCopycurl -X POST http://localhost:8000/api/customer/requests/ \
+-H "Content-Type: application/json" \
+-d '{
+    "customer_name": "John Doe",
+    "customer_email": "john.doe@example.com",
+    "customer_phone": "123-456-7890",
+    "request_type": 1,
+    "description": "Gas meter not working correctly"
+}'
+
+List Customer Requests
+bashCopycurl "http://localhost:8000/api/customer/requests/?email=john.doe@example.com"
+
+Track Specific Request
+bashCopycurl "http://localhost:8000/api/customer/requests/track_request/?request_id=1&email=john.doe@example.com"
+
+
+Support Representative Endpoints
+
+List All Requests
+bashCopycurl http://localhost:8000/api/support/requests/
+
+Update Request Status
+bashCopycurl -X PATCH http://localhost:8000/api/support/requests/1/update_status/ \
+-H "Content-Type: application/json" \
+-d '{
+    "status": "IN_PROGRESS",
+    "support_notes": "Currently investigating the issue"
+}'
+
+
+
+Debugging Tips
+
+Check Django server logs
+Verify database entries
+Use Django Debug Toolbar
+Check network requests in browser dev tools
+
+Common Issues
+
+Ensure all migrations are applied
+Check database connections
+Verify API endpoint URLs
+Validate JSON payload structures
+
+Production Considerations
+
+Add proper authentication
+Implement rate limiting
+Add input validation
+Set up logging and monitoring
